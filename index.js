@@ -1,7 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 8080; // 🛠 CHANGED fallback from 3000 → 8080
 
 app.use(bodyParser.json());
 
@@ -9,7 +9,7 @@ app.post("/slack/events", (req, res) => {
   const { type, challenge } = req.body;
 
   if (type === "url_verification") {
-    res.setHeader('Content-Type', 'text/plain'); // 🔧 REQUIRED
+    res.setHeader("Content-Type", "text/plain"); // ✅ REQUIRED
     return res.status(200).send(challenge);
   }
 
